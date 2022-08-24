@@ -16,7 +16,7 @@ import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
 const pages = ["Products", "Pricing", "Blog"];
 
-const ResponsiveAppBar = () => {
+const NavBar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -105,4 +105,4 @@ const ResponsiveAppBar = () => {
     </AppBar>
   );
 };
-export default ResponsiveAppBar;
+export default NavBar;
