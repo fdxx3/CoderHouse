@@ -1,13 +1,23 @@
-import ItemCount from "../ItemCount/ItemCount";
 import "./ItemListContainer.css";
+import { useEffect } from "react";
+import ItemList from "../ItemList/ItemList";
 
 const ItemListContainer = (props) => {
+  useEffect(() => {
+    const getData = async () => {
+      const peticion = await fetch(
+        "https://www.dolarsi.com/api/api.php?type=valoresprincipales"
+      );
+      const response = await peticion.json();
+      console.log(response);
+    };
+    getData();
+  }, []);
+
   return (
     <div>
-      <h1 className="greet">{props.greettings}</h1>
-      <h2>
-        <ItemCount stock={10} initial={1} onAdd="1"></ItemCount>
-      </h2>
+      <div className="App2">{props.greettings} </div>
+      <ItemList />
     </div>
   );
 };
