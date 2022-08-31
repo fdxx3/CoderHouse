@@ -1,54 +1,44 @@
 import React, { useEffect, useState } from "react";
 import Item from "../Item/Item";
-import producto1 from "../../assets/producto1.jpg";
-import producto2 from "../../assets/producto2.jpg";
-
-import Grid from "@material-ui/core/Grid";
-const ItemData = [
-  {
-    id: 1,
-    title: "producto1",
-    price: 2000,
-    pictureURL: producto1,
-  },
-  {
-    id: 2,
-    title: "producto2",
-    price: 3000,
-    pictureURL: producto2,
-  },
-];
-
+import getFetch from "../../helper/helper";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 const ItemList = () => {
-  const [ProductosData, setProductosData] = useState([]);
-
-  const ObtenerProductos = () => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(ItemData);
-      }, 3000);
-    });
-  };
+  const [data, setData] = useState([]);
+  const [loading, setloading] = useState(false);
 
   useEffect(() => {
-    const funcionAsincrona = async () => {
-      try {
-        const listado = await ObtenerProductos();
-        setProductosData(listado);
-        console.log("listado", listado);
-      } catch (error) {
-        console.log("hubo un error");
-      }
-    };
-    funcionAsincrona();
+    getFetch.then((data) => {
+      setData(data);
+      setloading(false);
+      console.log(data);
+    });
   }, []);
 
   return (
-    <div>
-      {ProductosData.map((data) => {
-        return <Item ItemData={data} key={data.id} />;
-      })}
-    </div>
+    <Box>
+      <h1>Item List Container</h1>
+
+      {loading ? (
+        <h2>Cargando ...</h2>
+      ) : (
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+        >
+          {" "}
+          {data.map((data) => (
+            <Grid item xs={0} sm={0}>
+              <Item key={data.id} data={data} />
+            </Grid>
+          ))}
+        </Grid>
+      )}
+    </Box>
   );
 };
 

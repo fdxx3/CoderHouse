@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-
-const ItemCount = ({ stock, initial, agregarProducto }) => {
+import Button from "@material-ui/core/Button";
+const ItemCount = ({ stock, initial, AddToCart }) => {
   const [disableSum, setDisableSum] = useState(false);
   const [disableRes, setDisableRes] = useState(false);
   const [contador, setContador] = useState(initial);
@@ -34,22 +34,44 @@ const ItemCount = ({ stock, initial, agregarProducto }) => {
     }
   };
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ bgcolor: "#cfe8fc", height: "30vh" }}>
-        <div>
-          <p>Unidades: {contador}</p>
-          <button onClick={decrementar} disabled={disableRes}>
-            -
-          </button>
-          <button onClick={incrementar} disabled={disableSum}>
-            +
-          </button>
-        </div>
+    <Box>
+      <div>
+        <p>Unidades: {contador}</p>
+        <Button
+          variant="outlined"
+          color="secondary"
+          onClick={decrementar}
+          disabled={disableRes}
+        >
+          -
+        </Button>
+        <Button
+          variant="outlined"
+          color="secondary"
+          onClick={incrementar}
+          disabled={disableSum}
+        >
+          +
+        </Button>
+      </div>
+      <div>
         {/* <button onClick={()=>(agregarProducto(contador))}
      style={{background: contador>1 ? 'blue' : 'white'}}>Agregar al carrito</button> */}
-        {contador > 0 ? <button>Agregar al carrito</button> : <p> </p>}
-      </Box>
-    </Container>
+        {contador > 0 ? (
+          <Button
+            variant="outlined"
+            color="secondary"
+            onClick={() => {
+              AddToCart(contador);
+            }}
+          >
+            Agregar al Carrito
+          </Button>
+        ) : (
+          <p> </p>
+        )}
+      </div>
+    </Box>
   );
 };
 
