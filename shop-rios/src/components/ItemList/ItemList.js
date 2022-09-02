@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Item from "../Item/Item";
-import getFetch from "../../helper/helper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-const ItemList = () => {
-  const [data, setData] = useState([]);
+const ItemList = ({ data }) => {
   const [loading, setloading] = useState(false);
 
   useEffect(() => {
-    getFetch.then((data) => {
-      setData(data);
-      setloading(false);
-      console.log(data);
-    });
+    setloading(false);
   }, []);
 
   return (
