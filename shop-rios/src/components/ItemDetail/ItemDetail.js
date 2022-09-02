@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
+import getFetch from "../../helper/helper";
 
-const ItemDetail = ({ data }) => {
+const ItemDetail = () => {
+  const [data, setdata] = useState({});
   const [loading, setloading] = useState(true);
 
   useEffect(() => {
-    setloading(false);
+    getFetch.then((response) => {
+      setdata(response.find((prod) => prod.id === 2));
+      setloading(false);
+    });
   }, []);
 
   return (
