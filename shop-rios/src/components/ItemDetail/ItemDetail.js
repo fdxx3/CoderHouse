@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 
+import ItemCount from "../ItemCount/ItemCount";
 const ItemDetail = ({ data }) => {
   const [loading, setloading] = useState(true);
-
+  const [products, setproducts] = React.useState();
+  const AddToCart = (selectedNumber) => {
+    setproducts(selectedNumber);
+  };
   useEffect(() => {
     setloading(false);
   }, []);
@@ -18,6 +22,11 @@ const ItemDetail = ({ data }) => {
           <div>{data.title} </div>
           <div>{data.price} </div>
           <div>{data.description} </div>
+          <ItemCount
+            stock={data.stock}
+            initial={data.initial}
+            AddToCart={AddToCart}
+          />
         </div>
       )}
     </div>

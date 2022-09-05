@@ -27,6 +27,7 @@ const Item = ({ data }) => {
   const [expanded, setExpanded] = React.useState(false);
   const itemdetail = "/item/".concat(data.id);
   const AddToCart = (selectedNumber) => {
+    console.log(selectedNumber);
     setproducts(selectedNumber);
   };
 

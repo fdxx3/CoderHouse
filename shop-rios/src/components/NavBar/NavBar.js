@@ -136,19 +136,20 @@ const NavBar = () => {
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Button
-                key={page.Name}
-                sx={{ my: 2, color: "white", display: "block" }}
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "claseActive" : "claseInactive"
+                }
+                to={page.Route}
               >
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "claseActive" : "claseInactive"
-                  }
-                  to={page.Route}
+                {" "}
+                <Button
+                  key={page.Name}
+                  sx={{ my: 2, color: "white", display: "block" }}
                 >
-                  {page.Name}
-                </NavLink>
-              </Button>
+                  {page.Name}{" "}
+                </Button>
+              </NavLink>
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>

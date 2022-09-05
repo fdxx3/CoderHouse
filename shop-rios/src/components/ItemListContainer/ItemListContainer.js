@@ -26,7 +26,7 @@ const ItemListContainer = () => {
 
   return (
     <Box>
-      <ItemList data={data} />;
+      <ItemList data={data} />
     </Box>
   );
 };
