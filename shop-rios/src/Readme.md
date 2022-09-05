@@ -1,0 +1,3 @@
+-El objetivo del trabajo es realizar una tienda online escalable y que pueda ser reutilizada para distintos clientes.
+-Se utiliza Materia UI para la interfaz grafica.
+-Se aplican conocimientos obtenidos en el curso para el ruteo y los componenetes.

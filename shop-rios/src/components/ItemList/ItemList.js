@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Item from "../Item/Item";
-import getFetch from "../../helper/helper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-const ItemList = () => {
-  const [data, setData] = useState([]);
-  const [loading, setloading] = useState(false);
 
+const ItemList = ({ data }) => {
+  const [loading, setloading] = useState(true);
   useEffect(() => {
-    getFetch.then((data) => {
-      setData(data);
-      setloading(false);
-      console.log(data);
-    });
+    setloading(false);
   }, []);
 
   return (
@@ -32,7 +26,7 @@ const ItemList = () => {
         >
           {" "}
           {data.map((data) => (
-            <Grid item xs={0} sm={0}>
+            <Grid key={data.id} item xs={0} sm={0}>
               <Item key={data.id} data={data} />
             </Grid>
           ))}

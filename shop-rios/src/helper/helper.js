@@ -12,6 +12,7 @@ const ItemData = [
     description: "description1",
     stock: 10,
     initial: 1,
+    category: ":ofertas",
   },
   {
     id: 2,
@@ -21,6 +22,7 @@ const ItemData = [
     description: "description2",
     stock: 10,
     initial: 1,
+    category: ":ofertas",
   },
   {
     id: 3,
@@ -30,6 +32,7 @@ const ItemData = [
     description: "description3",
     stock: 10,
     initial: 1,
+    category: ":ofertas",
   },
   {
     id: 4,
@@ -39,6 +42,7 @@ const ItemData = [
     description: "description4",
     stock: 10,
     initial: 1,
+    category: 2,
   },
   {
     id: 5,
@@ -48,6 +52,7 @@ const ItemData = [
     description: "description5",
     stock: 10,
     initial: 1,
+    category: ":ofertas",
   },
   {
     id: 6,
@@ -57,6 +62,7 @@ const ItemData = [
     description: "description6",
     stock: 10,
     initial: 1,
+    category: 1,
   },
 ];
 

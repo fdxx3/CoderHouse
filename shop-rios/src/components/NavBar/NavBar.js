@@ -8,13 +8,32 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 
+import { NavLink, Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
-const pages = ["Products", "Pricing", "Blog"];
+// const pages = ["Products", "Pricing", "Blog"];
+const pages = [
+  {
+    Name: "Catalogo",
+    Route: "/catalogo",
+  },
+  {
+    Name: "Quienes somos",
+    Route: "/nosotros",
+  },
+  {
+    Name: "Contacto",
+    Route: "/contacto",
+  },
+  {
+    Name: "Ofertas",
+    Route: "/catalogo/:ofertas",
+  },
+];
 
 const NavBar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -25,12 +44,25 @@ const NavBar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
     <AppBar position="static">
       <Container maxWidth="xxl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-
+          <IconButton
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+          >
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "claseActive" : "claseInactive"
+              }
+              to="/"
+            >
+              <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+            </NavLink>
+          </IconButton>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -58,13 +90,24 @@ const NavBar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
+              {" "}
               {pages.map((page) => (
-                <MenuItem key={page}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.Name}>
+                  <Typography key={page.Name} textAlign="center">
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive ? "claseActive" : "claseInactive"
+                      }
+                      to={page.Route}
+                    >
+                      {page.Name}
+                    </NavLink>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
+
           <Typography
             variant="h5"
             noWrap
@@ -81,15 +124,30 @@ const NavBar = () => {
               textDecoration: "none",
             }}
           >
-            Shop-Rios
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "claseActive" : "claseInactive"
+              }
+              to="/"
+            >
+              Shop-Rios
+            </NavLink>
           </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.Name}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page}
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "claseActive" : "claseInactive"
+                  }
+                  to={page.Route}
+                >
+                  {page.Name}
+                </NavLink>
               </Button>
             ))}
           </Box>
