@@ -7,6 +7,7 @@ import PaginaContacto from "./components/PaginaContacto/PaginaContacto";
 import PaginaNosotros from "./components/PaginaNosotros/PaginaNosotros";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
 import BreadCrumbs from "./components/BreadCrumbs/BreadCrumbs";
+import Cart from "./components/Cart/Cart";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/nosotros" element={<PaginaNosotros />} />
             <Route path="*" element={<ItemListContainer />} />
             <Route path="/item/:id" element={<ItemDetailContainer />} />
+            <Route path="/Cart" element={<Cart />} />
           </Routes>
           {/* <ItemListContainer />
       <ItemDetailContainer/> */}
