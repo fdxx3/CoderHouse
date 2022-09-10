@@ -39,7 +39,7 @@ const ItemCount = ({ stock, initial, AddToCart }) => {
         <p>Unidades: {contador}</p>
         <Button
           variant="outlined"
-          color="secondary"
+          color="primary"
           onClick={decrementar}
           disabled={disableRes}
         >
@@ -47,7 +47,7 @@ const ItemCount = ({ stock, initial, AddToCart }) => {
         </Button>
         <Button
           variant="outlined"
-          color="secondary"
+          color="primary"
           onClick={incrementar}
           disabled={disableSum}
         >
@@ -62,7 +62,7 @@ const ItemCount = ({ stock, initial, AddToCart }) => {
             <Button
               size="Small"
               variant="outlined"
-              color="secondary"
+              color="primary"
               onClick={() => {
                 AddToCart(contador);
               }}
@@ -70,7 +70,7 @@ const ItemCount = ({ stock, initial, AddToCart }) => {
               Agregar al Carrito
             </Button>
             <NavLink to="/Cart">
-              <Button variant="outlined" color="secondary" size="Small">
+              <Button variant="outlined" color="primary" size="Small">
                 Terminar mi Compra
               </Button>{" "}
             </NavLink>

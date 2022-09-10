@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect, useState, useContext } from "react";
+import ThemeContext from "../Context/ThemeContext";
 import ItemCount from "../ItemCount/ItemCount";
 const ItemDetail = ({ data }) => {
+  console.log(useContext(ThemeContext));
   const [loading, setloading] = useState(true);
   const [products, setproducts] = React.useState();
   const AddToCart = (selectedNumber) => {

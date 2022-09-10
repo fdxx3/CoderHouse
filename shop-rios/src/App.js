@@ -6,37 +6,39 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PaginaContacto from "./components/PaginaContacto/PaginaContacto";
 import PaginaNosotros from "./components/PaginaNosotros/PaginaNosotros";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
-import BreadCrumbs from "./components/BreadCrumbs/BreadCrumbs";
+import ThemeContext from "./components/Context/ThemeContext";
 import Cart from "./components/Cart/Cart";
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <div>
-          <NavBar />
+    <ThemeContext.Provider value={{ texto: "texto inical" }}>
+      <BrowserRouter>
+        <div className="App">
+          <div>
+            <NavBar />
 
-          <Routes>
-            <Route path="/" element={<ItemListContainer />} />
-            <Route path="/catalogo" element={<ItemListContainer />} />
-            {/* <Route path="/productos/camisas" element={<ItemListContainer />}/>
+            <Routes>
+              <Route path="/" element={<ItemListContainer />} />
+              <Route path="/catalogo" element={<ItemListContainer />} />
+              {/* <Route path="/productos/camisas" element={<ItemListContainer />}/>
         <Route path="/productos/zapatos" element={<ItemListContainer />}/> */}
-            <Route
-              path="/catalogo/:tipoProducto"
-              element={<ItemListContainer />}
-            />
-            {/* /item/:id */}
-            <Route path="/contacto" element={<PaginaContacto />} />
-            <Route path="/nosotros" element={<PaginaNosotros />} />
-            <Route path="*" element={<ItemListContainer />} />
-            <Route path="/item/:id" element={<ItemDetailContainer />} />
-            <Route path="/Cart" element={<Cart />} />
-          </Routes>
-          {/* <ItemListContainer />
+              <Route
+                path="/catalogo/:tipoProducto"
+                element={<ItemListContainer />}
+              />
+              {/* /item/:id */}
+              <Route path="/contacto" element={<PaginaContacto />} />
+              <Route path="/nosotros" element={<PaginaNosotros />} />
+              <Route path="*" element={<ItemListContainer />} />
+              <Route path="/item/:id" element={<ItemDetailContainer />} />
+              <Route path="/Cart" element={<Cart />} />
+            </Routes>
+            {/* <ItemListContainer />
       <ItemDetailContainer/> */}
+          </div>
         </div>
-      </div>
-    </BrowserRouter>
+      </BrowserRouter>
+    </ThemeContext.Provider>
   );
 }
 
