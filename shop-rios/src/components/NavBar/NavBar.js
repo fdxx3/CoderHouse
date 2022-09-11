@@ -211,11 +211,18 @@ const NavBar = () => {
             </Menu>
           </Box>
           <Box>
-            <Button>
-              <ShoppingCartIcon sx={{ fontSize: 30, color: "white" }}>
-                {" "}
-              </ShoppingCartIcon>
-            </Button>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "claseActive" : "claseInactive"
+              }
+              to="/CartContainer"
+            >
+              <Button>
+                <ShoppingCartIcon sx={{ fontSize: 30, color: "white" }}>
+                  {" "}
+                </ShoppingCartIcon>
+              </Button>{" "}
+            </NavLink>
           </Box>
         </Toolbar>
       </Container>

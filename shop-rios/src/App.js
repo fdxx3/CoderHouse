@@ -6,12 +6,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PaginaContacto from "./components/PaginaContacto/PaginaContacto";
 import PaginaNosotros from "./components/PaginaNosotros/PaginaNosotros";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
-import ThemeContext from "./components/Context/ThemeContext";
-import Cart from "./components/Cart/Cart";
+import CartProvider from "./components/Context/CartContext";
+import CartContainer from "./components/CartContainer/CartContainer";
 
 function App() {
   return (
-    <ThemeContext.Provider value={{ texto: "texto inical" }}>
+    <CartProvider>
       <BrowserRouter>
         <div className="App">
           <div>
@@ -31,14 +31,14 @@ function App() {
               <Route path="/nosotros" element={<PaginaNosotros />} />
               <Route path="*" element={<ItemListContainer />} />
               <Route path="/item/:id" element={<ItemDetailContainer />} />
-              <Route path="/Cart" element={<Cart />} />
+              <Route path="/CartContainer" element={<CartContainer />} />
             </Routes>
             {/* <ItemListContainer />
       <ItemDetailContainer/> */}
           </div>
         </div>
       </BrowserRouter>
-    </ThemeContext.Provider>
+    </CartProvider>
   );
 }
 
