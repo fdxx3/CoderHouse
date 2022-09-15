@@ -3,8 +3,12 @@ import Item from "../Item/Item";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 
+import Grow from "@mui/material/Grow";
+import { StyledEngineProvider } from "@mui/material/styles";
 const ItemList = ({ data }) => {
   const [loading, setloading] = useState(true);
+
+  const [checked, setChecked] = React.useState(true);
   useEffect(() => {
     setloading(false);
   }, []);
@@ -26,9 +30,15 @@ const ItemList = ({ data }) => {
         >
           {" "}
           {data.map((data) => (
-            <Grid key={data.id} item>
-              <Item key={data.id} data={data} />
-            </Grid>
+            <Grow
+              key={data.id}
+              in={checked}
+              style={{ transformOrigin: "0 0 0" }}
+            >
+              <Grid key={data.id} item>
+                <Item key={data.id} data={data} />{" "}
+              </Grid>
+            </Grow>
           ))}
         </Grid>
       )}

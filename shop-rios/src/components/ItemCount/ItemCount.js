@@ -69,11 +69,6 @@ const ItemCount = ({ stock, initial, AddToCart }) => {
             >
               Agregar al Carrito
             </Button>
-            <NavLink to="/CartContainer">
-              <Button variant="outlined" color="primary" size="Small">
-                Terminar mi Compra
-              </Button>{" "}
-            </NavLink>
           </Box>
         ) : (
           <p> </p>

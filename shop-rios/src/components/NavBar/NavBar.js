@@ -7,13 +7,12 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { NavLink, Link } from "react-router-dom";
+import CartWidget from "../CartWidget/CartWidget";
+import { NavLink } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import "./NavBar.css";
 import Avatar from "@mui/material/Avatar";
 const pages = [
@@ -217,11 +216,7 @@ const NavBar = () => {
               }
               to="/CartContainer"
             >
-              <Button>
-                <ShoppingCartIcon sx={{ fontSize: 30, color: "white" }}>
-                  {" "}
-                </ShoppingCartIcon>
-              </Button>{" "}
+              <CartWidget></CartWidget>
             </NavLink>
           </Box>
         </Toolbar>

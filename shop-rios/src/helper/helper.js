@@ -75,7 +75,7 @@ const ItemData = [
 const getFetch = new Promise((resolve, reject) => {
   setTimeout(() => {
     resolve(ItemData);
-  }, 3000);
+  }, 2000);
 });
 
 export default getFetch;
