@@ -1,28 +1,44 @@
 import "./ItemListContainer.css";
 import ItemList from "../ItemList/ItemList";
 import React, { useEffect, useState } from "react";
-import getFetch from "../../helper/helper";
+
 import Box from "@mui/material/Box";
 import { useParams } from "react-router-dom";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../../utils/firebase";
 
 const ItemListContainer = () => {
   const [data, setData] = useState([]);
-  const [loading, setloading] = useState(true);
+  const [loading, setloading] = useState(false);
   const { tipoProducto } = useParams();
 
   useEffect(() => {
-    getFetch.then((data) => {
-      if (!tipoProducto) {
-        setData(data);
-      } else {
-        const nuevaLista = data.filter(
-          (item) => item.category === tipoProducto
-        );
-        setData(nuevaLista);
-      }
+    const getData = async () => {
+      try {
+        let queryRef = !tipoProducto
+          ? collection(db, "ItemData")
+          : query(
+              collection(db, "ItemData"),
+              where("category", "==", tipoProducto)
+            );
+        const response = await getDocs(queryRef);
 
-      setloading(false);
-    });
+        const datos = response.docs.map((doc) => {
+          const newDoc = {
+            ...doc.data(),
+            id: doc.id,
+          };
+
+          return newDoc;
+        });
+
+        setData(datos);
+        setloading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getData();
   }, [tipoProducto]);
 
   return (

@@ -10,12 +10,9 @@ const ItemDetail = ({ data }) => {
   const [products, setproducts] = React.useState();
 
   const AddToCart = (selectedNumber) => {
-    console.log("onadd", selectedNumber);
-
     const newProduct = { ...data, quantity: selectedNumber };
     setproducts(selectedNumber);
     addProduct(newProduct);
-    console.log("newproduct", newProduct);
   };
   useEffect(() => {
     setloading(false);

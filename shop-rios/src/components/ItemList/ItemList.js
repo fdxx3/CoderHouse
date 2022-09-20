@@ -9,8 +9,11 @@ const ItemList = ({ data }) => {
   const [loading, setloading] = useState(true);
 
   const [checked, setChecked] = React.useState(true);
+
   useEffect(() => {
+    console.log(loading);
     setloading(false);
+    console.log(loading);
   }, []);
 
   return (
@@ -18,7 +21,7 @@ const ItemList = ({ data }) => {
       <h1>Item List Container</h1>
 
       {loading ? (
-        <h2>Cargando ...</h2>
+        <h2> </h2>
       ) : (
         <Grid
           container
