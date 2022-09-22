@@ -11,9 +11,7 @@ const ItemList = ({ data }) => {
   const [checked, setChecked] = React.useState(true);
 
   useEffect(() => {
-    console.log(loading);
     setloading(false);
-    console.log(loading);
   }, []);
 
   return (

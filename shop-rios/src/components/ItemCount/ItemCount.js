@@ -7,7 +7,6 @@ const ItemCount = ({ stock, initial, AddToCart }) => {
 
   const ini = 1;
   const [contador, setContador] = useState(ini);
-  console.log(contador);
 
   useEffect((stock) => {
     if (stock < 1) {
