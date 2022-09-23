@@ -10,17 +10,12 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import SkipNextIcon from "@mui/icons-material/SkipNext";
 import Divider from "@mui/material/Divider";
 const Cart = () => {
   const { productCartList, removeProduct, clearCart, getTotalAmount } =
     useContext(CartContext);
   const totalAmount = getTotalAmount();
-
   const [idOrder, setIdOrder] = useState("");
 
   const sendOrder = (e) => {
@@ -40,7 +35,7 @@ const Cart = () => {
     console.log(order);
     addDoc(queryRef, order).then((respuesta) => setIdOrder(respuesta.id));
   };
-  const theme = useTheme();
+
   return (
     <div>
       <h1>Carrito</h1>{" "}
@@ -66,6 +61,13 @@ const Cart = () => {
                       component="div"
                     >
                       Precio: {item.price}
+                    </Typography>
+                    <Typography
+                      variant="subtitle1"
+                      color="text.secondary"
+                      component="div"
+                    >
+                      Cantidad: {item.quantity}
                     </Typography>
                     <Button
                       onClick={() => removeProduct(item.id)}
