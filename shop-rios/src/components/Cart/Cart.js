@@ -1,11 +1,21 @@
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
+import { useTheme } from "@mui/material/styles";
 import { CartContext } from "../Context/CartContext";
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { db } from "../../utils/firebase";
 import { collection, addDoc, doc, updateDoc } from "firebase/firestore";
-
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import SkipNextIcon from "@mui/icons-material/SkipNext";
+import Divider from "@mui/material/Divider";
 const Cart = () => {
   const { productCartList, removeProduct, clearCart, getTotalAmount } =
     useContext(CartContext);
@@ -30,7 +40,7 @@ const Cart = () => {
     console.log(order);
     addDoc(queryRef, order).then((respuesta) => setIdOrder(respuesta.id));
   };
-
+  const theme = useTheme();
   return (
     <div>
       <h1>Carrito</h1>{" "}
@@ -38,18 +48,42 @@ const Cart = () => {
         <div>
           {productCartList.map((item) => (
             <div key={item.id}>
-              <h2>Producto: {item.title} </h2>
-              <h2>Precio: {item.price} </h2>
-              <h2>Cantidad: {item.quantity} </h2>
-              <Button
-                onClick={() => removeProduct(item.id)}
-                size="Small"
-                variant="outlined"
-                color="primary"
-              >
-                {" "}
-                Eliminar producto
-              </Button>
+              <Card sx={{ display: "flex" }}>
+                <CardMedia
+                  component="img"
+                  sx={{ width: 200 }}
+                  image={item.pictureURL}
+                  alt=""
+                />
+                <Box sx={{ display: "flex", flexDirection: "column" }}>
+                  <CardContent sx={{ flex: "1 0 auto" }}>
+                    <Typography component="div" variant="h5">
+                      Producto: {item.title}
+                    </Typography>
+                    <Typography
+                      variant="subtitle1"
+                      color="text.secondary"
+                      component="div"
+                    >
+                      Precio: {item.price}
+                    </Typography>
+                    <Button
+                      onClick={() => removeProduct(item.id)}
+                      size="Small"
+                      variant="outlined"
+                      color="primary"
+                    >
+                      {" "}
+                      Eliminar producto
+                    </Button>
+                  </CardContent>
+
+                  <Box
+                    sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}
+                  ></Box>
+                </Box>
+              </Card>
+              <Divider></Divider>
             </div>
           ))}
           <h2>Precio Total: {totalAmount} </h2>
