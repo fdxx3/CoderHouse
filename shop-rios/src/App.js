@@ -9,6 +9,8 @@ import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailCont
 import CartProvider from "./components/Context/CartContext";
 import CartContainer from "./components/CartContainer/CartContainer";
 import CartDrawer from "./components/CartDrawer/CartDrawer";
+import OrderForm from "./components/OrderForm/OrderForm";
+
 function App() {
   return (
     <CartProvider>
@@ -16,7 +18,6 @@ function App() {
         <div className="App">
           <div>
             <NavBar />
-            {/* <CartDrawer /> */}
             <Routes>
               <Route path="/" element={<ItemListContainer />} />
               <Route path="/catalogo" element={<ItemListContainer />} />
@@ -32,6 +33,7 @@ function App() {
               <Route path="*" element={<ItemListContainer />} />
               <Route path="/item/:id" element={<ItemDetailContainer />} />
               <Route path="/CartContainer" element={<CartContainer />} />
+              <Route path="/OrderForm" element={<OrderForm />} />
             </Routes>
 
             {/* <ItemListContainer />

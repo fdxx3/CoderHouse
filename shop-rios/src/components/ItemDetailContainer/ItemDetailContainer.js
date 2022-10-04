@@ -1,5 +1,4 @@
 import ItemDetail from "../ItemDetail/ItemDetail";
-import getFetch from "../../helper/helper";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 

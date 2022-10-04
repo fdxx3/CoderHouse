@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -15,6 +15,10 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import "./NavBar.css";
 import Avatar from "@mui/material/Avatar";
+import CartDrawer from "../CartDrawer/CartDrawer";
+
+import { useContext } from "react";
+import { CartContext } from "../Context/CartContext";
 const pages = [
   {
     Name: "Catalogo",
@@ -43,6 +47,12 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { productCartList, getTotalProducts } = useContext(CartContext);
+  const [abrir, setAbrir] = useState(false);
+
+  const accionAbrir = () => {
+    setAbrir(!abrir);
+  };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -210,14 +220,18 @@ const NavBar = () => {
             </Menu>
           </Box>
           <Box>
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? "claseActive" : "claseInactive"
-              }
-              to="/CartContainer"
-            >
-              <CartWidget></CartWidget>
-            </NavLink>
+            {productCartList.length > 0 && (
+              <>
+                <Button onClick={() => accionAbrir()}>
+                  <CartWidget></CartWidget>
+                </Button>
+              </>
+            )}
+            <CartDrawer
+              variant="temporary"
+              open={abrir}
+              onClose={accionAbrir}
+            ></CartDrawer>
           </Box>
         </Toolbar>
       </Container>

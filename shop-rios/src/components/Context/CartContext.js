@@ -46,6 +46,11 @@ const CartProvider = ({ children }) => {
     return totalProducts;
   };
 
+  const setDrawerOn = (sw) => {
+    const on = sw;
+    return on;
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -55,6 +60,7 @@ const CartProvider = ({ children }) => {
         clearCart,
         getTotalProducts,
         getTotalAmount,
+        setDrawerOn,
       }}
     >
       {children}

@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
-import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useContext } from "react";
 import { CartContext } from "../Context/CartContext";
-
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
     right: -3,
@@ -15,23 +13,20 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-const CartWidget = () => {
+const CartWidget = (props) => {
   const { productCartList, getTotalProducts } = useContext(CartContext);
-
   const totalProducts = getTotalProducts();
   return (
     <div>
       {productCartList.length > 0 && (
         <>
-          <IconButton aria-label="cart">
-            <StyledBadge
-              display={totalProducts === 0 ? "none" : undefined}
-              badgeContent={totalProducts}
-              color="secondary"
-            >
-              <ShoppingCartIcon sx={{ fontSize: 30, color: "white" }} />
-            </StyledBadge>
-          </IconButton>
+          <StyledBadge
+            display={totalProducts === 0 ? "none" : undefined}
+            badgeContent={totalProducts}
+            color="secondary"
+          >
+            <ShoppingCartIcon sx={{ fontSize: 30, color: "white" }} />
+          </StyledBadge>
         </>
       )}
     </div>
