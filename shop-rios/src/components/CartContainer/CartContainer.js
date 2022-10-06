@@ -1,10 +1,12 @@
 import React from "react";
 import Cart from "../Cart/Cart";
+import Box from "@mui/material/Box";
+
 const CartContainer = () => {
   return (
-    <div>
+    <Box>
       <Cart></Cart>
-    </div>
+    </Box>
   );
 };
 

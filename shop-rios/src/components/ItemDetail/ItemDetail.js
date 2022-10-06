@@ -1,9 +1,14 @@
 import React, { useEffect, useState, useContext } from "react";
 import { CartContext } from "../Context/CartContext";
 import ItemCount from "../ItemCount/ItemCount";
-import CartWidget from "../CartWidget/CartWidget";
 import Button from "@material-ui/core/Button";
 import CartDrawer from "../CartDrawer/CartDrawer";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+
+import { CardActionArea } from "@mui/material";
 
 const ItemDetail = ({ data }, props) => {
   const { addProduct, getTotalProducts } = useContext(CartContext);
@@ -28,17 +33,30 @@ const ItemDetail = ({ data }, props) => {
   const cantidad = getTotalProducts();
 
   return (
-    <div className="item-container">
+    <Box>
       <h1>Item Detail Container</h1>
       {loading ? (
         <h2>Cargando...</h2>
       ) : (
-        <div className="item-detail">
-          <img src={data.pictureURL}></img>
+        <Box>
+          <Box>
+            <Card>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  height="200"
+                  image={data.pictureURL}
+                  alt=""
+                />
+              </CardActionArea>
+              <CardContent>
+                <h4>{data.title} </h4>
+                <h6>Precio: ${data.price} </h6>
+              </CardContent>
 
-          <div>{data.title} </div>
-          <div>{data.price} </div>
-          <div>{data.description} </div>
+              <div>{data.description} </div>
+            </Card>
+          </Box>
 
           <ItemCount
             stock={data.stock}
@@ -60,9 +78,9 @@ const ItemDetail = ({ data }, props) => {
               Terminar Compra
             </Button>
           )}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };
 

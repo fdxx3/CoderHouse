@@ -1,7 +1,7 @@
 import ItemDetail from "../ItemDetail/ItemDetail";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import Box from "@mui/material/Box";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../utils/firebase";
 const ItemDetailContainer = () => {
@@ -29,9 +29,11 @@ const ItemDetailContainer = () => {
   }, [id]);
 
   return (
-    <div>
-      <ItemDetail data={data} />{" "}
-    </div>
+    <Box>
+      <Box>
+        <ItemDetail data={data} />{" "}
+      </Box>
+    </Box>
   );
 };
 

@@ -9,14 +9,14 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-import OrderForm from "../OrderForm/OrderForm";
+
 const Cart = () => {
   const { productCartList, removeProduct, clearCart, getTotalAmount } =
     useContext(CartContext);
   const totalAmount = getTotalAmount();
 
   return (
-    <div>
+    <Box>
       <h1>Carrito</h1>{" "}
       {productCartList.length > 0 ? (
         <div>
@@ -92,7 +92,7 @@ const Cart = () => {
           </NavLink>
         </div>
       )}
-    </div>
+    </Box>
   );
 };
 
