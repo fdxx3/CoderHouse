@@ -5,10 +5,14 @@ import Grid from "@mui/material/Grid";
 
 import Grow from "@mui/material/Grow";
 import { StyledEngineProvider } from "@mui/material/styles";
-const ItemList = ({ data }) => {
+const ItemList = ({ data, category }) => {
   const [loading, setloading] = useState(true);
 
   const [checked, setChecked] = React.useState(true);
+  var title = "Catalogo";
+
+  if (category == "destacados") title = "Destacados";
+  if (category == "ofertas") title = "Ofertas";
 
   useEffect(() => {
     setloading(false);
@@ -16,7 +20,7 @@ const ItemList = ({ data }) => {
 
   return (
     <Box>
-      <h1>Item List Container</h1>
+      <h1>{title}</h1>
 
       {loading ? (
         <h2> </h2>

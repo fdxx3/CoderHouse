@@ -3,6 +3,9 @@ import { Drawer } from "@mui/material";
 import CartContainer from "../CartContainer/CartContainer";
 import { Button } from "@material-ui/core";
 import Box from "@mui/material/Box";
+
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { NavLink } from "react-router-dom";
 const CartDrawer = (props) => {
   const cerrar = props.onClose;
 
@@ -12,14 +15,26 @@ const CartDrawer = (props) => {
         <Drawer
           open={props.open}
           anchor="right"
-          PaperProps={{ sx: { background: "#fff" } }}
+          PaperProps={{ sx: { minWidth: 470, background: "#fff" } }}
           variant={"temporary"}
           onClose={props.onClose}
         >
-          <Box>
-            <CartContainer></CartContainer>
+          <Box component="span">
+            <CartContainer onClose={props.onClose}></CartContainer>
           </Box>
-          <Button onClick={() => cerrar()}>Cerrar Carrito</Button>
+          <Box component="span" sx={{ p: 2, border: "1px " }}>
+            <NavLink to="/Catalogo">
+              <Button
+                onClick={() => cerrar()}
+                size="Small"
+                variant="outlined"
+                color="primary"
+              >
+                Volver al catalogo
+                <ArrowBackIcon></ArrowBackIcon>
+              </Button>
+            </NavLink>
+          </Box>
         </Drawer>
       </Box>
     </>

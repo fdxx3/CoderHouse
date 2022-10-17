@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { CartContext } from "../Context/CartContext";
-
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Button from "@material-ui/core/Button";
 import { db } from "../../utils/firebase";
 import { collection, addDoc, doc, updateDoc } from "firebase/firestore";
 import { useContext } from "react";
@@ -10,12 +12,13 @@ const OrderForm = () => {
 
   const [idOrder, setIdOrder] = useState("");
   const sendOrder = (e) => {
+    console.log(e);
     e.preventDefault();
     const order = {
       buyer: {
         name: e.target[0].value,
-        phone: e.target[1].value,
-        email: e.target[2].value,
+        phone: e.target[2].value,
+        email: e.target[4].value,
       },
       items: productCartList,
       total: getTotalAmount(),
@@ -28,17 +31,29 @@ const OrderForm = () => {
   };
 
   return (
-    <div>
-      {" "}
-      <form onSubmit={sendOrder}>
-        <input type="text" placeholder="nombre" />
-        <input type="text" placeholder="telefono" />
-        <input type="email" placeholder="email" />
-        <button type="submit">enviar orden</button>
-      </form>
-      <button>actualizar</button>
+    <Box
+      component="form"
+      sx={{
+        "& .MuiTextField-root": { m: 1, width: "25ch" },
+      }}
+      noValidate
+      autoComplete="off"
+      onSubmit={sendOrder}
+    >
+      <Box justifyContent="center" alignItems="center" sx={{ p: 1 }}>
+        <TextField required id="outlined-required" label="Nombre" />
+        <TextField required id="outlined-required" label="Telefono" />
+        <TextField required id="outlined-required" label="E-Mail" />
+      </Box>
+      <Button type="submit" variant="outlined" color="primary">
+        enviar orden
+      </Button>
+
+      {/* <Button variant="outlined" color="primary">
+        actualizar
+      </Button> */}
       {idOrder !== "" && <div> Su orden fue generada con el id: {idOrder}</div>}
-    </div>
+    </Box>
   );
 };
 

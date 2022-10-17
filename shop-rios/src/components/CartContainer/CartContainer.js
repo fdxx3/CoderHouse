@@ -2,10 +2,10 @@ import React from "react";
 import Cart from "../Cart/Cart";
 import Box from "@mui/material/Box";
 
-const CartContainer = () => {
+const CartContainer = (props) => {
   return (
     <Box>
-      <Cart></Cart>
+      <Cart onClose={props}></Cart>
     </Box>
   );
 };

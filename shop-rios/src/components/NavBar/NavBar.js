@@ -40,6 +40,10 @@ const pages = [
     Name: "Destacados",
     Route: "/catalogo/destacados",
   },
+  {
+    Name: "Login",
+    Route: "/login",
+  },
 ];
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -89,7 +93,7 @@ const NavBar = () => {
               textDecoration: "none",
             }}
           >
-            Shop-Rios
+            NavLink
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -159,7 +163,7 @@ const NavBar = () => {
               textDecoration: "none",
             }}
           >
-            Shop-Rios
+            NavLink
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (

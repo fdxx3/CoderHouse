@@ -1,16 +1,41 @@
 import "./ItemListContainer.css";
 import ItemList from "../ItemList/ItemList";
 import React, { useEffect, useState } from "react";
-
 import Box from "@mui/material/Box";
 import { useParams } from "react-router-dom";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../../utils/firebase";
+import { db, auth } from "../../utils/firebase";
+
+import { signInWithEmailAndPassword } from "firebase/auth";
+
+// const getauthorization = async () => {
+//   const userCredentials = await createUserWithEmailAndPassword(
+//     auth,
+//     "federios742@gmail.com",
+//     "123456"
+//   );
+//   console.log(userCredentials);
+// };
 
 const ItemListContainer = () => {
   const [data, setData] = useState([]);
   const [loading, setloading] = useState(false);
   const { tipoProducto } = useParams();
+
+  const logInWithEmailAndPassword = async (email, password) => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log("ok");
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
+  };
+  logInWithEmailAndPassword("federios742@gmail.com", "123456").then(
+    (result) => {
+      console.log(result);
+    }
+  );
 
   useEffect(() => {
     const getData = async () => {
@@ -47,7 +72,7 @@ const ItemListContainer = () => {
         <h2>Cargando ...</h2>
       ) : (
         <Box>
-          <ItemList data={data} />
+          <ItemList data={data} category={tipoProducto} />
         </Box>
       )}
     </Box>

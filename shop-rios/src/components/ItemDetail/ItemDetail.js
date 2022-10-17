@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-
+import Container from "@mui/material/Container";
 import { CardActionArea } from "@mui/material";
 
 const ItemDetail = ({ data }, props) => {
@@ -33,8 +33,11 @@ const ItemDetail = ({ data }, props) => {
   const cantidad = getTotalProducts();
 
   return (
-    <Box>
-      <h1>Item Detail Container</h1>
+    <Container maxWidth="sm">
+      <h1>
+        {" "}
+        <br></br>
+      </h1>
       {loading ? (
         <h2>Cargando...</h2>
       ) : (
@@ -80,7 +83,7 @@ const ItemDetail = ({ data }, props) => {
           )}
         </Box>
       )}
-    </Box>
+    </Container>
   );
 };
 

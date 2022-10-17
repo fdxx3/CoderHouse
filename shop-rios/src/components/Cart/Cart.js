@@ -9,12 +9,13 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-
-const Cart = () => {
+import PaymentIcon from "@mui/icons-material/Payment";
+import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
+const Cart = (props) => {
   const { productCartList, removeProduct, clearCart, getTotalAmount } =
     useContext(CartContext);
   const totalAmount = getTotalAmount();
-
+  const cerrar = props.onClose.onClose;
   return (
     <Box>
       <h1>Carrito</h1>{" "}
@@ -39,7 +40,7 @@ const Cart = () => {
                       color="text.secondary"
                       component="div"
                     >
-                      Precio: {item.price}
+                      Precio Unitario: $ {item.price}
                     </Typography>
                     <Typography
                       variant="subtitle1"
@@ -66,30 +67,39 @@ const Cart = () => {
               <Divider></Divider>
             </div>
           ))}
-          <h2>Precio Total: {totalAmount} </h2>
-          <Button
-            onClick={() => clearCart()}
-            size="Small"
-            variant="outlined"
-            color="primary"
-          >
+          <Box sx={{ p: 2, border: "1px " }}>
+            <h2>Precio Total: $ {totalAmount} </h2>
+          </Box>
+          <Box sx={{ p: 2, border: "1px " }}>
+            <NavLink to="/OrderForm">
+              <Button
+                size="Small"
+                variant="outlined"
+                color="primary"
+                onClick={() => cerrar()}
+              >
+                Ir a Pagar
+                <PaymentIcon></PaymentIcon>
+              </Button>
+            </NavLink>
+          </Box>
+          <Box sx={{ p: 2, border: "1px " }}>
             {" "}
-            Limpiar Carrito
-          </Button>
-          <NavLink to="/OrderForm">
-            <Button size="Small" variant="outlined" color="primary">
-              Ir a Pagar
+            <Button
+              onClick={() => clearCart()}
+              size="Small"
+              variant="outlined"
+              color="primary"
+            >
+              {" "}
+              Limpiar Carrito
+              <RemoveShoppingCartIcon></RemoveShoppingCartIcon>
             </Button>
-          </NavLink>
+          </Box>
         </div>
       ) : (
         <div>
           <div>No hay items en el carrito!</div>
-          <NavLink to="/Catalogo">
-            <Button size="Small" variant="outlined" color="primary">
-              Volver al catalogo
-            </Button>
-          </NavLink>
         </div>
       )}
     </Box>
