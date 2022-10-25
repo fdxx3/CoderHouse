@@ -3,7 +3,7 @@ import { CartContext } from "../Context/CartContext";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@material-ui/core/Button";
-import { db } from "../../utils/firebase";
+import { db } from "../../firebase/firebase";
 import { collection, addDoc, doc, updateDoc } from "firebase/firestore";
 import { useContext } from "react";
 const OrderForm = () => {

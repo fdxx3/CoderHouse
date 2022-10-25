@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import { useParams } from "react-router-dom";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { db, auth } from "../../utils/firebase";
+import { db, auth } from "../../firebase/firebase";
 
 import { signInWithEmailAndPassword } from "firebase/auth";
 
@@ -22,20 +22,20 @@ const ItemListContainer = () => {
   const [loading, setloading] = useState(false);
   const { tipoProducto } = useParams();
 
-  const logInWithEmailAndPassword = async (email, password) => {
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      console.log("ok");
-    } catch (err) {
-      console.error(err);
-      alert(err.message);
-    }
-  };
-  logInWithEmailAndPassword("federios742@gmail.com", "123456").then(
-    (result) => {
-      console.log(result);
-    }
-  );
+  // const logInWithEmailAndPassword = async (email, password) => {
+  //   try {
+  //     await signInWithEmailAndPassword(auth, email, password);
+  //     console.log("ok");
+  //   } catch (err) {
+  //     console.error(err);
+  //     alert(err.message);
+  //   }
+  // };
+  // logInWithEmailAndPassword("federios742@gmail.com", "123456").then(
+  //   (result) => {
+  //     console.log(result);
+  //   }
+  // );
 
   useEffect(() => {
     const getData = async () => {

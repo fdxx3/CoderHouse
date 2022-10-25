@@ -10,7 +10,7 @@ import CartProvider from "./components/Context/CartContext";
 import CartContainer from "./components/CartContainer/CartContainer";
 import OrderForm from "./components/OrderForm/OrderForm";
 import { Provider } from "react-redux";
-import { store } from "./utils/store";
+import { store } from "./store/store";
 import LoginPage from "./auth/pages/LoginPage";
 import RegisterPage from "./auth/pages/RegisterPage";
 function App() {

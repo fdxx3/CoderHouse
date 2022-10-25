@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../utils/firebase";
+import { db } from "../../firebase/firebase";
 const ItemDetailContainer = () => {
   const { id } = useParams();
   const [data, setdata] = useState({});

@@ -1,6 +1,6 @@
 import { collection } from "firebase/firestore";
 
-import { db } from "../utils/firebase";
+import { db } from "../firebase/firebase";
 
 // const ItemData = [
 //   {
