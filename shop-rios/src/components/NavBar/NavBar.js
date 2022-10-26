@@ -19,6 +19,10 @@ import CartDrawer from "../CartDrawer/CartDrawer";
 
 import { useContext } from "react";
 import { CartContext } from "../Context/CartContext";
+import { LogoutOutlined } from "@mui/icons-material";
+import { Grid } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { startLogout } from "../../store/auth/thunk";
 const pages = [
   {
     Name: "Catalogo",
@@ -39,10 +43,6 @@ const pages = [
   {
     Name: "Destacados",
     Route: "/catalogo/destacados",
-  },
-  {
-    Name: "Login",
-    Route: "/login",
   },
 ];
 
@@ -73,6 +73,15 @@ const NavBar = () => {
     setAnchorElUser(null);
   };
 
+  const dispatch = useDispatch();
+
+  const onLogout = () => {
+    dispatch(startLogout());
+  };
+
+  const { displayName, photoURL } = useSelector((state) => state.auth);
+  console.log(displayName);
+  console.log(photoURL);
   return (
     <AppBar position="sticky">
       <Container maxWidth="xxl">
@@ -189,7 +198,7 @@ const NavBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src={photoURL} />
               </IconButton>
             </Tooltip>
 
@@ -237,109 +246,14 @@ const NavBar = () => {
               onClose={accionAbrir}
             ></CartDrawer>
           </Box>
+          <Box sx={{ ml: "10px" }}>
+            <IconButton color="error" onClick={onLogout}>
+              <LogoutOutlined />
+            </IconButton>
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>
-
-    // <AppBar position="static">
-    //   <Container maxWidth="xxl">
-    //     <Toolbar disableGutters>
-    //       <IconButton
-    //         aria-label="account of current user"
-    //         aria-controls="menu-appbar"
-    //         aria-haspopup="true"
-    //       >
-    //         <NavLink
-    //           className={({ isActive }) =>
-    //             isActive ? "claseActive" : "claseInactive"
-    //           }
-    //           to="/"
-    //         >
-    //           <Typography
-    //             sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-    //             textAlign="center"
-    //           >
-    //             {" "}
-    //             Shop-Rios
-    //           </Typography>
-    //         </NavLink>
-    //       </IconButton>
-
-    //       <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-    //         <IconButton
-    //           size="large"
-    //           aria-label="account of current user"
-    //           aria-controls="menu-appbar"
-    //           aria-haspopup="true"
-    //           color="inherit"
-    //         >
-    //           <MenuIcon />
-    //         </IconButton>
-
-    //         <Menu
-    //           id="menu-appbar"
-    //           anchorOrigin={{
-    //             vertical: "bottom",
-    //             horizontal: "left",
-    //           }}
-    //           keepMounted
-    //           transformOrigin={{
-    //             vertical: "top",
-    //             horizontal: "left",
-    //           }}
-    //           anchorEl={anchorEl}
-    //           open={false}
-    //           sx={{
-    //             display: { xs: "block", md: "none" },
-    //           }}
-    //         >
-    //           {" "}
-    //           {pages.map((page) => (
-    //             <MenuItem key={page.Name}>
-    //               <Typography key={page.Name} textAlign="center">
-    //                 <NavLink
-    //                   className={({ isActive }) =>
-    //                     isActive ? "claseActive" : "claseInactive"
-    //                   }
-    //                   to={page.Route}
-    //                 >
-    //                   {page.Name}
-    //                 </NavLink>
-    //               </Typography>
-    //             </MenuItem>
-    //           ))}
-    //         </Menu>
-    //       </Box>
-
-    //       <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-    //         {pages.map((page) => (
-    //           <NavLink
-    //             key={page.Name}
-    //             className={({ isActive }) =>
-    //               isActive ? "claseActive" : "claseInactive"
-    //             }
-    //             to={page.Route}
-    //           >
-    //             {" "}
-    //             <Button
-    //               key={page.Name}
-    //               sx={{ my: 2, color: "white", display: "block" }}
-    //             >
-    //               {page.Name}{" "}
-    //             </Button>
-    //           </NavLink>
-    //         ))}
-    //       </Box>
-    //       <Box sx={{ flexGrow: 0 }}>
-    //         <Tooltip title="Carrito De Compras">
-    //           <IconButton sx={{ p: 0, color: "inherit" }}>
-    //             <ShoppingCart />
-    //           </IconButton>
-    //         </Tooltip>
-    //       </Box>
-    //     </Toolbar>
-    //   </Container>
-    // </AppBar>
   );
 };
 export default NavBar;

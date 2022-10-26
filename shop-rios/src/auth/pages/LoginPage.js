@@ -13,7 +13,6 @@ import { NavLink } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 import AuthLayout from "../../Layout/AuthLayout";
 import {
-  checkingAutentication,
   startGoogleSignIn,
   startLoginWithEmailPassword,
 } from "../../store/auth/thunk";
