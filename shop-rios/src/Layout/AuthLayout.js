@@ -1,6 +1,5 @@
 import React from "react";
 import { Grid, Typography } from "@mui/material";
-
 const AuthLayout = ({ children, title = "" }) => {
   return (
     <Grid

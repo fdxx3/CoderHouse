@@ -9,7 +9,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import CartWidget from "../CartWidget/CartWidget";
 import { NavLink } from "react-router-dom";
-import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
@@ -20,9 +19,10 @@ import CartDrawer from "../CartDrawer/CartDrawer";
 import { useContext } from "react";
 import { CartContext } from "../Context/CartContext";
 import { LogoutOutlined } from "@mui/icons-material";
-import { Grid } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { startLogout } from "../../store/auth/thunk";
+import { Button, Link } from "@mui/material";
+
 const pages = [
   {
     Name: "Catalogo",
@@ -140,17 +140,23 @@ const NavBar = () => {
                   onClick={handleCloseNavMenu}
                   className="button"
                 >
-                  <NavLink
-                    className={({ isActive }) =>
-                      isActive ? "claseActive" : "claseInactive"
-                    }
+                  <Link
+                    component={NavLink}
+                    color="inherit"
                     to={page.Route}
+                    underline="none"
+                    key={page.Route}
                   >
-                    {" "}
-                    <Typography textAlign="center" key={page.Name}>
-                      <Button key={page.Name}>{page.Name}</Button>
-                    </Typography>
-                  </NavLink>
+                    <Button
+                      underline="none"
+                      key={page.Route}
+                      onClick={handleCloseNavMenu}
+                      sx={{ my: 2, color: "white", display: "block" }}
+                      color="inherit"
+                    >
+                      {page.Name}
+                    </Button>
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -176,22 +182,23 @@ const NavBar = () => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <NavLink
-                key={page.Name}
-                className={({ isActive }) =>
-                  isActive ? "claseActive" : "claseInactive"
-                }
+              <Link
+                component={NavLink}
+                color="inherit"
                 to={page.Route}
+                underline="none"
+                key={page.Route}
               >
                 <Button
-                  key={page.Name}
+                  underline="none"
+                  key={page.Route}
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}
                   color="inherit"
                 >
                   {page.Name}
                 </Button>
-              </NavLink>
+              </Link>
             ))}
           </Box>
 

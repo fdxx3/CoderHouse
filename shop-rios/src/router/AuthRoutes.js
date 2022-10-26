@@ -6,12 +6,12 @@ import PaginaNosotros from "../components/PaginaNosotros/PaginaNosotros";
 import ItemDetailContainer from "../components/ItemDetailContainer/ItemDetailContainer";
 import CartContainer from "../components/CartContainer/CartContainer";
 import OrderForm from "../components/OrderForm/OrderForm";
-
+import "animate.css";
 import { Routes, Route } from "react-router-dom";
 
 const AuthRoutes = () => {
   return (
-    <div>
+    <div className="animate__animated animate__fadeIn animate__faster">
       <NavBar />
       <Routes>
         <Route path="/" element={<ItemListContainer />} />
