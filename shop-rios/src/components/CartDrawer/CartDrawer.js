@@ -15,7 +15,7 @@ const CartDrawer = (props) => {
         <Drawer
           open={props.open}
           anchor="right"
-          PaperProps={{ sx: { minWidth: 200, background: "#fff" } }}
+          PaperProps={{ sx: { minWidth: 410, background: "#fff" } }}
           variant={"temporary"}
           onClose={props.onClose}
         >
